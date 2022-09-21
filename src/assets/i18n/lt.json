@@ -1,3 +1,13 @@
 {
-  "hello world": "Labas, Pasauli!"
+  "hello world": "Hello, World!",
+  "header": {
+    "login": "Prisijungti",
+    "signup": "Registracija"
+  },
+  "tables": {
+    "id": "Nr.",
+    "name": "Vardas",
+    "date": "Data",
+    "description": "Aprašymas"
+  }
 }

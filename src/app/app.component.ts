@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MatSelectChange } from '@angular/material/select';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 
@@ -16,10 +17,48 @@ export class AppComponent implements OnInit {
 
   defaultLang: string = this.getLangCookie() || 'en';
 
-  onLangChange(lang: string): void {
-    this.translate.use(lang);
-    document.cookie = `lang=${lang}`;
-    this.router.navigate([], { relativeTo: this.route, queryParams: { lang } });
+  displayedColumns: string[] = ['id', 'name', 'date', 'problem'];
+
+  patients: any[] = [
+    {
+      id: 1,
+      name: 'Vardenis Pavardenis',
+      date: '2022-09-21 19:00',
+      description: 'Skauda koja',
+    },
+    {
+      id: 2,
+      name: 'Jonas Jonaitis',
+      date: '2022-09-21 19:15',
+      description: 'Skauda ranka',
+    },
+    {
+      id: 3,
+      name: 'Petras Petraitis',
+      date: '2022-09-21 19:00',
+      description: 'Skauda galva',
+    },
+    {
+      id: 4,
+      name: 'Stasys Stasaitis',
+      date: '2022-09-21 19:00',
+      description: 'Neina uzmigti',
+    },
+    {
+      id: 5,
+      name: 'Vardis Pavardis',
+      date: '2022-09-21 19:00',
+      description: 'Kraujuoja ausis',
+    },
+  ];
+
+  onLangChange(e: MatSelectChange): void {
+    this.translate.use(e.value);
+    document.cookie = `lang=${e.value}`;
+    this.router.navigate([], {
+      relativeTo: this.route,
+      queryParams: { lang: e.value },
+    });
   }
 
   getLangCookie(): string | undefined {

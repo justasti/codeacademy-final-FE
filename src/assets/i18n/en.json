@@ -1,3 +1,13 @@
 {
-  "hello world": "Hello, World!"
+  "hello world": "Hello, World!",
+  "header": {
+    "login": "Log in",
+    "signup": "Sign up"
+  },
+  "tables": {
+    "id": "ID",
+    "name": "Name",
+    "date": "Date",
+    "description": "Description"
+  }
 }
