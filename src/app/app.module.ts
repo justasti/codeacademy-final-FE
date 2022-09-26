@@ -22,6 +22,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { NewAppointmentComponent } from './core/components/new-appointment/new-appointment.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -34,6 +35,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     LoginComponent,
     SignupComponent,
     MainContentComponent,
+    NewAppointmentComponent,
   ],
   imports: [
     BrowserModule,
@@ -48,6 +50,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     }),
     ReactiveFormsModule,
     FormsModule,
+    HttpClientModule,
     BrowserAnimationsModule,
     MatButtonModule,
     MatCardModule,

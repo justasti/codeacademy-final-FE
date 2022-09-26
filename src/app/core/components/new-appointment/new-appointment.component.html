@@ -1,0 +1,21 @@
+<form [formGroup]="newAppointmentForm">
+  <input
+    type="text"
+    name="patientPersonalCode"
+    placeholder="patient code"
+    formControlName="patientPersonalCode"
+  />
+  <input
+    type="text"
+    name="doctorPersonalCode"
+    placeholder="doctor code"
+    formControlName="doctorPersonalCode"
+  />
+  <input
+    type="text"
+    name="patientPersonalCode"
+    placeholder="patient code"
+    formControlName="description"
+  />
+  <button (click)="onSubmit()">submit</button>
+</form>
