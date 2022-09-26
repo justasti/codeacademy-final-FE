@@ -10,7 +10,10 @@
   },
   "errors": {
     "email": "Please enter a valid email address",
-    "required": "Field is required"
+    "required": "Field is required",
+    "personal_code_length": "Personal code must consist of 11 digits",
+    "personal_code_pattern": "Personal code must only consist of digits",
+    "password_match": "Entered passwords does not match"
   },
   "login": {
     "email": "Email address",
@@ -19,6 +22,11 @@
     "new_user": "New user?",
     "welcome": "Logged in successfully! Redirecting",
     "invalid": "Incorrect login details! Please try again"
+  },
+  "signup": {
+    "personal_code": "Personal code",
+    "confirm": "Confirm password",
+    "signup": "Create new account"
   },
   "tables": {
     "id": "ID",

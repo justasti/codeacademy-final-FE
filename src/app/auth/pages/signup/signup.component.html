@@ -1,1 +1,73 @@
-<p>signup works!</p>
+<mat-card>
+  <form [formGroup]="signupForm" (ngSubmit)="onSubmitForm()">
+    <mat-form-field>
+      <mat-label for="personal_code">{{
+        "signup.personal_code" | translate
+      }}</mat-label>
+      <input
+        matInput
+        type="text"
+        formControlName="personalCode"
+        id="personal_code"
+      />
+      <mat-error *ngIf="checkErrors('personalCode', 'required')">
+        {{ "errors.required" | translate }}
+      </mat-error>
+      <mat-error *ngIf="checkErrors('personalCode', 'pattern')">
+        {{ "errors.personal_code_pattern" | translate }}
+      </mat-error>
+      <mat-error
+        *ngIf="
+          checkErrors('personalCode', 'minlength') ||
+          checkErrors('personalCode', 'maxlength')
+        "
+      >
+        {{ "errors.personal_code_length" | translate }}
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label for="username">{{ "login.email" | translate }}</mat-label>
+      <input
+        matInput
+        type="text"
+        formControlName="email"
+        id="email"
+        placeholder="email@example.com"
+      />
+      <mat-error *ngIf="checkErrors('email', 'required')">
+        {{ "errors.required" | translate }}
+      </mat-error>
+      <mat-error *ngIf="checkErrors('email', 'email')">
+        {{ "errors.email" | translate }}
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label for="password">{{ "login.password" | translate }}</mat-label>
+      <input
+        matInput
+        type="password"
+        formControlName="password"
+        id="password"
+      />
+      <mat-error *ngIf="checkErrors('password', 'required')">
+        {{ "errors.required" | translate }}
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label for="confirm">{{ "signup.confirm" | translate }}</mat-label>
+      <input matInput type="password" formControlName="confirm" id="confirm" />
+      <mat-error *ngIf="checkErrors('confirm', 'required')">
+        {{ "errors.required" | translate }}
+      </mat-error>
+      <mat-error *ngIf="checkErrors('confirm', 'noMatch')">
+        {{ "errors.password_match" | translate }}
+      </mat-error>
+    </mat-form-field>
+
+    <button mat-raised-button color="primary" (click)="onSubmitForm()">
+      {{ "signup.signup" | translate }}
+    </button>
+  </form>
+</mat-card>

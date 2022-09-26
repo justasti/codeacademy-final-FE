@@ -10,15 +10,24 @@
   },
   "errors": {
     "email": "Neteisingas el. pašto adreso formatas",
-    "required": "Lauko reikšmė privaloma"
+    "required": "Lauko reikšmė privaloma",
+    "personal_code_length": "Asmens kodą turi sudaryti 11 skaičių",
+    "personal_code_pattern": "Asmens kodą turi tik skaičiai",
+    "password_match": "Įvesti slaptažodžiai nesutampa"
   },
   "login": {
     "email": "El. pašto adresas",
     "password": "Slaptažodis",
     "login": "Prisijungti",
     "new_user": "Naujas vartotojas?",
-    "welcome": "Prisijungta sėkmingai! Grįžtama į pradžią",
+    "welcome": "Sėkmingai prisijungta! Grįžtama į pradžią",
     "invalid": "Neteisingi prisijungimo duomenys! Bandykite dar kartą"
+  },
+  "signup": {
+    "personal_code": "Asmens kodas",
+    "confirm": "Pakartokite slaptažodį",
+    "signup": "Sukurti vartotoją",
+    "success": "Vartotojas sėkmingai sukurtas"
   },
   "tables": {
     "id": "Nr.",

@@ -18,7 +18,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { LoginComponent } from './auth/pages/login/login.component';
 import { SignupComponent } from './auth/pages/signup/signup.component';
 import { MainContentComponent } from './core/pages/main-content/main-content.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
@@ -47,6 +47,7 @@ export function HttpLoaderFactory(http: HttpClient) {
       },
     }),
     ReactiveFormsModule,
+    FormsModule,
     BrowserAnimationsModule,
     MatButtonModule,
     MatCardModule,
