@@ -1,0 +1,33 @@
+<div class="content">
+  <mat-form-field>
+    <mat-label>Language</mat-label>
+    <mat-select matNativeControl (selectionChange)="onLangChange($event)">
+      <mat-option value="lt">Lithuanian</mat-option>
+      <mat-option value="en">English</mat-option>
+    </mat-select>
+  </mat-form-field>
+  <mat-toolbar color="primary">
+    <ul>
+      <div>
+        <li>
+          <a [routerLink]="['/']" routerLinkActive="active">{{
+            "header.home" | translate
+          }}</a>
+        </li>
+        <li>Page2</li>
+      </div>
+      <div>
+        <li>
+          <button mat-raised-button color="basic" (click)="redirect('login')">
+            {{ "header.login" | translate }}
+          </button>
+        </li>
+        <li>
+          <button mat-raised-button color="accent" (click)="redirect('signup')">
+            {{ "header.signup" | translate }}
+          </button>
+        </li>
+      </div>
+    </ul>
+  </mat-toolbar>
+</div>

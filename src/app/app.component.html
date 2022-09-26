@@ -1,58 +1,6 @@
 <div class="container">
-  <mat-form-field>
-    <mat-label>Language</mat-label>
-    <mat-select matNativeControl (selectionChange)="onLangChange($event)">
-      <mat-option value="lt">Lithuanian</mat-option>
-      <mat-option value="en">English</mat-option>
-    </mat-select>
-  </mat-form-field>
+  <app-header></app-header>
   <mat-card>
-    <mat-toolbar color="primary">
-      <ul>
-        <div>
-          <li>Page1</li>
-          <li>Page2</li>
-        </div>
-        <div>
-          <li>
-            <button mat-raised-button color="basic">
-              {{ "header.login" | translate }}
-            </button>
-          </li>
-          <li>
-            <button mat-raised-button color="accent">
-              {{ "header.signup" | translate }}
-            </button>
-          </li>
-        </div>
-      </ul>
-    </mat-toolbar>
-    <table mat-table [dataSource]="patients">
-      <ng-container matColumnDef="id">
-        <th mat-header-cell *matHeaderCellDef>{{ "tables.id" | translate }}</th>
-        <td mat-cell *matCellDef="let patient">{{ patient.id }}</td>
-      </ng-container>
-      <ng-container matColumnDef="name">
-        <th mat-header-cell *matHeaderCellDef>
-          {{ "tables.name" | translate }}
-        </th>
-        <td mat-cell *matCellDef="let patient">{{ patient.name }}</td>
-      </ng-container>
-      <ng-container matColumnDef="date">
-        <th mat-header-cell *matHeaderCellDef>
-          {{ "tables.date" | translate }}
-        </th>
-        <td mat-cell *matCellDef="let patient">{{ patient.date }}</td>
-      </ng-container>
-      <ng-container matColumnDef="problem">
-        <th mat-header-cell *matHeaderCellDef>
-          {{ "tables.description" | translate }}
-        </th>
-        <td mat-cell *matCellDef="let patient">{{ patient.description }}</td>
-      </ng-container>
-
-      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
-    </table>
+    <router-outlet></router-outlet>
   </mat-card>
 </div>

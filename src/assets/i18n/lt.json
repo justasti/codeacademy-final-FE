@@ -1,8 +1,24 @@
 {
-  "hello world": "Hello, World!",
+  "common": {
+    "open": "Atidaryti",
+    "close": "Uždaryti"
+  },
   "header": {
     "login": "Prisijungti",
-    "signup": "Registracija"
+    "signup": "Registracija",
+    "home": "Pradžia"
+  },
+  "errors": {
+    "email": "Neteisingas el. pašto adreso formatas",
+    "required": "Lauko reikšmė privaloma"
+  },
+  "login": {
+    "email": "El. pašto adresas",
+    "password": "Slaptažodis",
+    "login": "Prisijungti",
+    "new_user": "Naujas vartotojas?",
+    "welcome": "Prisijungta sėkmingai! Grįžtama į pradžią",
+    "invalid": "Neteisingi prisijungimo duomenys! Bandykite dar kartą"
   },
   "tables": {
     "id": "Nr.",

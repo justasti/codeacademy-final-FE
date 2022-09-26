@@ -1,0 +1,39 @@
+<mat-card>
+  <form [formGroup]="loginForm" (ngSubmit)="onSubmitForm()">
+    <mat-form-field>
+      <mat-label for="username">{{ "login.email" | translate }}</mat-label>
+      <input
+        matInput
+        type="text"
+        formControlName="email"
+        id="email"
+        placeholder="email@example.com"
+      />
+      <mat-error *ngIf="checkErrors('email', 'required')">
+        {{ "errors.required" | translate }}
+      </mat-error>
+      <mat-error *ngIf="checkErrors('email', 'email')">
+        {{ "errors.email" | translate }}
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label for="password">{{ "login.password" | translate }}</mat-label>
+      <input
+        matInput
+        type="password"
+        formControlName="password"
+        id="password"
+      />
+      <mat-error *ngIf="checkErrors('password', 'required')">
+        {{ "login.new_user" | translate }}
+      </mat-error>
+    </mat-form-field>
+
+    <button mat-raised-button color="primary" (click)="onSubmitForm()">
+      {{ "login.login" | translate }}
+    </button>
+    <a routerLink="/signup" mat-button type="button" color="primary">
+      {{ "login.new_user" | translate }}
+    </a>
+  </form>
+</mat-card>

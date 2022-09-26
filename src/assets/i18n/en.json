@@ -1,8 +1,24 @@
 {
-  "hello world": "Hello, World!",
+  "common": {
+    "open": "Open",
+    "close": "Close"
+  },
   "header": {
     "login": "Log in",
-    "signup": "Sign up"
+    "signup": "Sign up",
+    "home": "Home"
+  },
+  "errors": {
+    "email": "Please enter a valid email address",
+    "required": "Field is required"
+  },
+  "login": {
+    "email": "Email address",
+    "password": "Password",
+    "login": "Log in",
+    "new_user": "New user?",
+    "welcome": "Logged in successfully! Redirecting",
+    "invalid": "Incorrect login details! Please try again"
   },
   "tables": {
     "id": "ID",
