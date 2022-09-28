@@ -1,6 +1,8 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 import { AuthService } from 'src/app/auth/services/auth.service';
+import CurrentUser from 'src/app/shared/interfaces/CurrentUser.interface';
 import Role from 'src/app/shared/interfaces/Role.interface';
 import User from 'src/app/shared/interfaces/User.interface';
 
@@ -14,16 +16,24 @@ export class UserService {
 
   private requestHeader = new HttpHeaders({ 'No-Auth': 'True' });
 
-  public login(loginData: any) {
+  public login(loginData: { personalCode: string; password: string }) {
     return this.http.post(this.API_PATH + 'authenticate', loginData, {
       headers: this.requestHeader,
     });
+  }
+
+  public getCurrentUser(): Observable<any> {
+    return this.http.get<CurrentUser>(this.API_PATH + 'api/users/current');
   }
 
   public createUser(user: User) {
     return this.http.post(this.API_PATH + 'api/users/new', user, {
       headers: this.requestHeader,
     });
+  }
+
+  public getAllDoctors(): Observable<any> {
+    return this.http.get(this.API_PATH + 'api/users/doctors');
   }
 
   public isAuthorized(allowedRoles: string[]): boolean {

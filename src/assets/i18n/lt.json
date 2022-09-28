@@ -7,7 +7,9 @@
     "login": "Prisijungti",
     "signup": "Registracija",
     "logout": "Atsijungti",
-    "home": "Pradžia"
+    "home": "Pradžia",
+    "appointments": "Vizitai",
+    "admin_panel": "Administratoriaus panelė"
   },
   "errors": {
     "email": "Neteisingas el. pašto adreso formatas",
@@ -37,5 +39,14 @@
     "name": "Vardas",
     "date": "Data",
     "description": "Aprašymas"
+  },
+  "appointments": {
+    "new": {
+      "doctor": "Pasirinkite daktarą",
+      "date": "Pasirinkite dieną",
+      "hour": "Valanda",
+      "minute": "Minutė",
+      "complaint": "Nusiskundimas"
+    }
   }
 }

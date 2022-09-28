@@ -47,7 +47,7 @@ export class HeaderComponent implements OnInit {
     const cookies = document.cookie.split(';');
     for (let cookie of cookies) {
       if (cookie.includes('lang')) {
-        this.langCookie = cookie.substring(5);
+        this.langCookie = cookie.substring(6);
       }
     }
     return this.langCookie;

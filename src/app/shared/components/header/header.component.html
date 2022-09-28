@@ -10,11 +10,15 @@
     <ul>
       <div>
         <li>
-          <a [routerLink]="['/']" routerLinkActive="active">{{
-            "header.home" | translate
+          <a [routerLink]="['/appointments']" routerLinkActive="active">{{
+            "header.appointments" | translate
           }}</a>
         </li>
-        <li>Page2</li>
+        <li>
+          <a [routerLink]="['/admin']" routerLinkActive="active">{{
+            "header.admin_panel" | translate
+          }}</a>
+        </li>
       </div>
       <div *ngIf="!isAuthenticated()">
         <li>

@@ -30,6 +30,9 @@ import { NewAppointmentComponent } from './core/components/new-appointment/new-a
 import { AuthGuard } from './auth/guards/auth.guard';
 import { AuthInterceptor } from './core/services/auth.interceptor';
 import { UserService } from './core/services/user.service';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import { AdminComponent } from './core/pages/admin/admin.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -43,6 +46,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     SignupComponent,
     MainContentComponent,
     NewAppointmentComponent,
+    AdminComponent,
   ],
   imports: [
     BrowserModule,
@@ -69,6 +73,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     MatFormFieldModule,
     MatInputModule,
     MatSnackBarModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
   ],
   providers: [
     AuthGuard,

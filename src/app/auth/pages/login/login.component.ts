@@ -53,7 +53,7 @@ export class LoginComponent implements OnInit {
           this.authService.setToken(res.jwtToken);
           this.authService.setRoles(res.user.roles);
 
-          this.router.navigate(['/']);
+          this.router.navigate(['/appointments']);
         },
         (err) => {
           this.translate
@@ -65,24 +65,6 @@ export class LoginComponent implements OnInit {
           });
         }
       );
-      //     console.log(this.loginForm.value);
-      //     this.translate
-      //       .get('login.welcome')
-      //       .subscribe((res) => (this.message = res));
-      //     this.snackBar.open(this.message, this.closeMessage, {
-      //       duration: 1000,
-      //       verticalPosition: 'top',
-      //     });
-      //     setTimeout(() => {
-      //       this.router.navigate(['/']);
-      //     }, 1000);
-      //   } else {
-      //     this.translate
-      //       .get('login.invalid')
-      //       .subscribe((res) => (this.message = res));
-      //     this.snackBar.open(this.message, this.closeMessage, {
-      //       verticalPosition: 'top',
-      //     });
     }
   }
 }

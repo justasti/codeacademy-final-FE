@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import Appointment from 'src/app/shared/interfaces/Appointment.interface';
+import { AppointmentsService } from '../../services/appointments.service';
 import { UserService } from '../../services/user.service';
 
 @Component({
@@ -7,18 +9,15 @@ import { UserService } from '../../services/user.service';
   styleUrls: ['./main-content.component.scss'],
 })
 export class MainContentComponent implements OnInit {
-  constructor(private userService: UserService) {}
+  constructor(private appointmentsService: AppointmentsService) {}
 
   displayedColumns: string[] = ['id', 'name', 'date', 'problem'];
 
   appointments: Appointment[] = [];
 
-  ngOnInit(): void {}
-}
-export interface Appointment {
-  id: number;
-  doctorPersonalCode: string;
-  patientpersonalCode: string;
-  appointmentDate: string;
-  description: string;
+  ngOnInit(): void {
+    this.appointmentsService.getAllAppointments().subscribe((res) => {
+      this.appointments = res;
+    });
+  }
 }

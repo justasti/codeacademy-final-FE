@@ -1,0 +1,24 @@
+mat-card {
+  margin: 2rem;
+  width: 600px;
+  margin-inline: auto;
+}
+mat-form-field {
+  display: block;
+  width: 100%;
+  margin-top: 0rem;
+}
+button {
+  margin-top: 1.5rem;
+}
+.date {
+  width: 40%;
+}
+.time {
+  width: 15%;
+}
+.inline {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 0.5rem;
+}

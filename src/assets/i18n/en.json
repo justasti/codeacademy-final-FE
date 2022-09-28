@@ -7,7 +7,9 @@
     "login": "Log in",
     "signup": "Sign up",
     "logout": "Log out",
-    "home": "Home"
+    "home": "Home",
+    "appointments": "Appointments",
+    "admin_panel": "Admin panel"
   },
   "errors": {
     "email": "Please enter a valid email address",
@@ -37,5 +39,14 @@
     "name": "Name",
     "date": "Date",
     "description": "Description"
+  },
+  "appointments": {
+    "new": {
+      "doctor": "Choose a doctor",
+      "date": "Choose date",
+      "hour": "Hour",
+      "minute": "Minute",
+      "complaint": "Complaint"
+    }
   }
 }

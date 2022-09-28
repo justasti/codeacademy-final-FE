@@ -1,21 +1,93 @@
-<form [formGroup]="newAppointmentForm">
-  <input
-    type="text"
-    name="patientPersonalCode"
-    placeholder="patient code"
-    formControlName="patientPersonalCode"
-  />
-  <input
-    type="text"
-    name="doctorPersonalCode"
-    placeholder="doctor code"
-    formControlName="doctorPersonalCode"
-  />
-  <input
-    type="text"
-    name="patientPersonalCode"
-    placeholder="patient code"
-    formControlName="description"
-  />
-  <button (click)="onSubmit()">submit</button>
-</form>
+<mat-card>
+  <form [formGroup]="newAppointmentForm" (submit)="onSubmit()">
+    <mat-form-field>
+      <mat-label for="patientPersonalCode">{{
+        "signup.personal_code" | translate
+      }}</mat-label>
+      <input
+        matInput
+        type="text"
+        formControlName="patientPersonalCode"
+        id="patientPersonalCode"
+      />
+      <mat-error>
+        {{ "errors.required" | translate }}
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>{{ "appointments.new.doctor" | translate }}</mat-label>
+      <mat-select (selectionChange)="setSelectedDoctor($event)">
+        <mat-option
+          *ngFor="let doctor of doctors"
+          [value]="doctor.personalCode"
+        >
+          {{ doctor.firstName }} {{ doctor.lastName }}
+        </mat-option>
+      </mat-select>
+      <mat-error>
+        {{ "errors.required" | translate }}
+      </mat-error>
+    </mat-form-field>
+
+    <div class="inline">
+      <mat-form-field class="date">
+        <mat-label for="appointmentDay">{{
+          "appointments.new.date" | translate
+        }}</mat-label>
+        <input
+          matInput
+          [matDatepicker]="picker"
+          formControlName="appointmentDay"
+          id="appointmentDay"
+        />
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+        <mat-error>
+          {{ "errors.required" | translate }}
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="time">
+        <mat-label>{{ "appointments.new.hour" | translate }}</mat-label>
+        <mat-select (selectionChange)="setSelectedHour($event)">
+          <mat-option *ngFor="let hour of appointmentHours" [value]="hour">
+            {{ hour }}
+          </mat-option>
+        </mat-select>
+        <mat-error>
+          {{ "errors.required" | translate }}
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="time">
+        <mat-label>{{ "appointments.new.minute" | translate }}</mat-label>
+        <mat-select (selectionChange)="setSelectedMinute($event)">
+          <mat-option
+            *ngFor="let minute of appointmentMinutes"
+            [value]="minute"
+          >
+            {{ minute }}
+          </mat-option>
+        </mat-select>
+        <mat-error>
+          {{ "errors.required" | translate }}
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <mat-form-field>
+      <mat-label for="complaint">{{
+        "appointments.new.complaint" | translate
+      }}</mat-label>
+      <textarea matInput formControlName="complaint" id="complaint"></textarea>
+      <mat-error>
+        {{ "errors.required" | translate }}
+      </mat-error>
+    </mat-form-field>
+
+    <button mat-raised-button color="primary">
+      {{ "signup.signup" | translate }}
+    </button>
+  </form>
+</mat-card>
