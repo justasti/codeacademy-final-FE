@@ -1,6 +1,5 @@
-import { HttpClient, HttpRequest, HttpResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { HttpService } from '../../services/http.service';
+import { UserService } from '../../services/user.service';
 
 @Component({
   selector: 'app-main-content',
@@ -8,17 +7,13 @@ import { HttpService } from '../../services/http.service';
   styleUrls: ['./main-content.component.scss'],
 })
 export class MainContentComponent implements OnInit {
-  constructor(private httpService: HttpService) {}
+  constructor(private userService: UserService) {}
 
   displayedColumns: string[] = ['id', 'name', 'date', 'problem'];
 
   appointments: Appointment[] = [];
 
-  ngOnInit(): void {
-    this.httpService.getAppointments.subscribe(
-      (res) => (this.appointments = res)
-    );
-  }
+  ngOnInit(): void {}
 }
 export interface Appointment {
   id: number;

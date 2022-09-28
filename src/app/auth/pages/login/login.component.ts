@@ -3,6 +3,8 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
+import { UserService } from 'src/app/core/services/user.service';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -13,7 +15,9 @@ export class LoginComponent implements OnInit {
   constructor(
     private router: Router,
     private translate: TranslateService,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    private userService: UserService,
+    private authService: AuthService
   ) {}
 
   message: string = '';
@@ -24,7 +28,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     this.loginForm = new FormGroup({
-      email: new FormControl('', [Validators.required, Validators.email]),
+      personalCode: new FormControl('', [Validators.required]),
       password: new FormControl(null, [Validators.required]),
     });
 
@@ -44,23 +48,41 @@ export class LoginComponent implements OnInit {
     this.loginForm.markAllAsTouched();
 
     if (this.loginForm.valid) {
-      this.translate
-        .get('login.welcome')
-        .subscribe((res) => (this.message = res));
-      this.snackBar.open(this.message, this.closeMessage, {
-        duration: 1000,
-        verticalPosition: 'top',
-      });
-      setTimeout(() => {
-        this.router.navigate(['/']);
-      }, 1000);
-    } else {
-      this.translate
-        .get('login.invalid')
-        .subscribe((res) => (this.message = res));
-      this.snackBar.open(this.message, this.closeMessage, {
-        verticalPosition: 'top',
-      });
+      this.userService.login(this.loginForm.value).subscribe(
+        (res: any) => {
+          this.authService.setToken(res.jwtToken);
+          this.authService.setRoles(res.user.roles);
+
+          this.router.navigate(['/']);
+        },
+        (err) => {
+          this.translate
+            .get('login.invalid')
+            .subscribe((res) => (this.message = res));
+          this.snackBar.open(this.message, this.closeMessage, {
+            verticalPosition: 'top',
+            duration: 2000,
+          });
+        }
+      );
+      //     console.log(this.loginForm.value);
+      //     this.translate
+      //       .get('login.welcome')
+      //       .subscribe((res) => (this.message = res));
+      //     this.snackBar.open(this.message, this.closeMessage, {
+      //       duration: 1000,
+      //       verticalPosition: 'top',
+      //     });
+      //     setTimeout(() => {
+      //       this.router.navigate(['/']);
+      //     }, 1000);
+      //   } else {
+      //     this.translate
+      //       .get('login.invalid')
+      //       .subscribe((res) => (this.message = res));
+      //     this.snackBar.open(this.message, this.closeMessage, {
+      //       verticalPosition: 'top',
+      //     });
     }
   }
 }

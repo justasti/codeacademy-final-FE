@@ -6,6 +6,7 @@
   "header": {
     "login": "Prisijungti",
     "signup": "Registracija",
+    "logout": "Atsijungti",
     "home": "Pradžia"
   },
   "errors": {
@@ -25,6 +26,8 @@
   },
   "signup": {
     "personal_code": "Asmens kodas",
+    "first_name": "Vardas",
+    "last_name": "Pavardė",
     "confirm": "Pakartokite slaptažodį",
     "signup": "Sukurti vartotoją",
     "success": "Vartotojas sėkmingai sukurtas"

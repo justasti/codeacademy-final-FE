@@ -6,6 +6,7 @@
   "header": {
     "login": "Log in",
     "signup": "Sign up",
+    "logout": "Log out",
     "home": "Home"
   },
   "errors": {
@@ -25,8 +26,11 @@
   },
   "signup": {
     "personal_code": "Personal code",
+    "first_name": "Name",
+    "last_name": "Surname",
     "confirm": "Confirm password",
-    "signup": "Create new account"
+    "signup": "Create new account",
+    "success": "User sucessfully created"
   },
   "tables": {
     "id": "ID",

@@ -16,7 +16,7 @@
         </li>
         <li>Page2</li>
       </div>
-      <div>
+      <div *ngIf="!isAuthenticated()">
         <li>
           <button mat-raised-button color="basic" (click)="redirect('login')">
             {{ "header.login" | translate }}
@@ -27,6 +27,11 @@
             {{ "header.signup" | translate }}
           </button>
         </li>
+      </div>
+      <div *ngIf="isAuthenticated()">
+        <button mat-raised-button color="accent" (click)="logOut()">
+          {{ "header.logout" | translate }}
+        </button>
       </div>
     </ul>
   </mat-toolbar>

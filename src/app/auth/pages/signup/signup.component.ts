@@ -10,6 +10,7 @@ import {
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
+import { UserService } from 'src/app/core/services/user.service';
 
 @Component({
   selector: 'app-signup',
@@ -20,7 +21,8 @@ export class SignupComponent implements OnInit {
   constructor(
     private router: Router,
     private translate: TranslateService,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    private userService: UserService
   ) {}
 
   message: string = '';
@@ -38,6 +40,8 @@ export class SignupComponent implements OnInit {
         Validators.pattern(/^[0-9]\d*$/),
       ]),
       email: new FormControl('', [Validators.required, Validators.email]),
+      firstName: new FormControl('', [Validators.required]),
+      lastName: new FormControl('', [Validators.required]),
       password: new FormControl('', [Validators.required]),
       confirm: new FormControl('', [
         Validators.required,
@@ -61,16 +65,31 @@ export class SignupComponent implements OnInit {
     this.signupForm.markAllAsTouched();
 
     if (this.signupForm.valid) {
-      this.translate
-        .get('login.welcome')
-        .subscribe((res) => (this.message = res));
-      this.snackBar.open(this.message, this.closeMessage, {
-        duration: 1000,
-        verticalPosition: 'top',
-      });
-      setTimeout(() => {
-        this.router.navigate(['/']);
-      }, 1000);
+      this.userService
+        .createUser({
+          personalCode: this.signupForm.get('personalCode')?.value,
+          email: this.signupForm.get('email')?.value,
+          firstName: this.signupForm.get('firstName')?.value,
+          lastName: this.signupForm.get('lastName')?.value,
+          password: this.signupForm.get('password')?.value,
+        })
+        .subscribe(
+          (res) => {
+            this.translate
+              .get('signup.success')
+              .subscribe((res) => (this.message = res));
+            this.snackBar.open(this.message, this.closeMessage, {
+              duration: 1000,
+              verticalPosition: 'top',
+            });
+            setTimeout(() => {
+              this.router.navigate(['/']);
+            }, 1000);
+          },
+          (err) => {
+            console.log('err: ', err);
+          }
+        );
     }
   }
 

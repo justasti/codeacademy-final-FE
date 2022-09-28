@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatSelectChange } from '@angular/material/select';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
+import { AuthService } from 'src/app/auth/services/auth.service';
 
 @Component({
   selector: 'app-header',
@@ -12,12 +13,22 @@ export class HeaderComponent implements OnInit {
   constructor(
     private translate: TranslateService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private authService: AuthService
   ) {}
 
   defaultLang: string = this.getLangCookie() || 'en';
 
   langCookie!: string;
+
+  logOut() {
+    this.authService.clear();
+    this.router.navigate(['/login']);
+  }
+
+  public isAuthenticated(): boolean {
+    return this.authService.isLoggedIn();
+  }
 
   redirect(redirectRoute: string) {
     this.router.navigate([redirectRoute]);
@@ -36,7 +47,7 @@ export class HeaderComponent implements OnInit {
     const cookies = document.cookie.split(';');
     for (let cookie of cookies) {
       if (cookie.includes('lang')) {
-        this.langCookie = cookie.substring(6);
+        this.langCookie = cookie.substring(5);
       }
     }
     return this.langCookie;

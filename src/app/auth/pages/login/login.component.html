@@ -1,19 +1,17 @@
 <mat-card>
   <form [formGroup]="loginForm" (ngSubmit)="onSubmitForm()">
     <mat-form-field>
-      <mat-label for="username">{{ "login.email" | translate }}</mat-label>
+      <mat-label for="username">{{
+        "signup.personal_code" | translate
+      }}</mat-label>
       <input
         matInput
         type="text"
-        formControlName="email"
-        id="email"
-        placeholder="email@example.com"
+        formControlName="personalCode"
+        id="personalCode"
       />
-      <mat-error *ngIf="checkErrors('email', 'required')">
+      <mat-error *ngIf="checkErrors('personalCode', 'required')">
         {{ "errors.required" | translate }}
-      </mat-error>
-      <mat-error *ngIf="checkErrors('email', 'email')">
-        {{ "errors.email" | translate }}
       </mat-error>
     </mat-form-field>
     <mat-form-field>
@@ -29,7 +27,7 @@
       </mat-error>
     </mat-form-field>
 
-    <button mat-raised-button color="primary" (click)="onSubmitForm()">
+    <button mat-raised-button color="primary">
       {{ "login.login" | translate }}
     </button>
     <a routerLink="/signup" mat-button type="button" color="primary">

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { HttpService } from '../../services/http.service';
+import { UserService } from '../../services/user.service';
 
 @Component({
   selector: 'app-new-appointment',
@@ -8,7 +8,7 @@ import { HttpService } from '../../services/http.service';
   styleUrls: ['./new-appointment.component.scss'],
 })
 export class NewAppointmentComponent implements OnInit {
-  constructor(private httpService: HttpService) {}
+  constructor(private userService: UserService) {}
 
   newAppointmentForm: FormGroup = new FormGroup({});
 
@@ -21,7 +21,5 @@ export class NewAppointmentComponent implements OnInit {
     });
   }
 
-  onSubmit() {
-    this.httpService.addAppointment(this.newAppointmentForm.value);
-  }
+  onSubmit() {}
 }
