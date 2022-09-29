@@ -61,12 +61,12 @@ export class MainContentComponent implements OnInit {
           if (parsedAppointmentDate < parsedCurrentDate) {
             this.expiredAppointments.push(appointment);
             this.expiredAppointments = this.expiredAppointments.sort((a, b) =>
-              a.appointmentDate < b.appointmentDate ? -1 : 1
+              a.appointmentDate < b.appointmentDate ? 1 : -1
             );
           } else {
             this.activeAppointments.push(appointment);
             this.activeAppointments = this.activeAppointments.sort((a, b) =>
-              a.appointmentDate < b.appointmentDate ? 1 : -1
+              a.appointmentDate < b.appointmentDate ? -1 : 1
             );
           }
         }
