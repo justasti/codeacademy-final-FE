@@ -20,6 +20,10 @@ export class AdminComponent implements OnInit {
   allUsers: CurrentUser[] = [];
 
   ngOnInit(): void {
+    this.getAllUsers();
+  }
+
+  private getAllUsers() {
     this.userService.getAllUsers().subscribe((res) => {
       this.allUsers = res;
     });
@@ -30,5 +34,6 @@ export class AdminComponent implements OnInit {
       relativeTo: this.route,
     });
     this.showCard = true;
+    this.getAllUsers();
   }
 }

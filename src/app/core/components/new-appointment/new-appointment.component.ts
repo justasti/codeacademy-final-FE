@@ -140,5 +140,8 @@ export class NewAppointmentComponent implements OnInit {
       }
       this.router.navigate(['/appointments']);
     }
+    setTimeout(() => {
+      window.location.reload();
+    }, 1);
   }
 }

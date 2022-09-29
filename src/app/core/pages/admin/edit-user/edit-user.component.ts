@@ -44,6 +44,9 @@ export class EditUserComponent implements OnInit {
     if (this.newRole) {
       this.userService.changeRole(this.userPC, this.newRole);
       this.router.navigate(['/admin']);
+      setTimeout(() => {
+        window.location.reload();
+      }, 1);
     }
   }
 }
