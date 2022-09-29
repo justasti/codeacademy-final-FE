@@ -83,7 +83,7 @@ export class SignupComponent implements OnInit {
               verticalPosition: 'top',
             });
             setTimeout(() => {
-              this.router.navigate(['/']);
+              this.router.navigate(['/login']);
             }, 1000);
           },
           (err) => {

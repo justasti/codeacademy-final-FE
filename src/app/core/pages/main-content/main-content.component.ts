@@ -60,8 +60,14 @@ export class MainContentComponent implements OnInit {
           const parsedCurrentDate = Date.parse(new Date().toDateString());
           if (parsedAppointmentDate < parsedCurrentDate) {
             this.expiredAppointments.push(appointment);
+            this.expiredAppointments = this.expiredAppointments.sort((a, b) =>
+              a.appointmentDate < b.appointmentDate ? -1 : 1
+            );
           } else {
             this.activeAppointments.push(appointment);
+            this.activeAppointments = this.activeAppointments.sort((a, b) =>
+              a.appointmentDate < b.appointmentDate ? 1 : -1
+            );
           }
         }
       });

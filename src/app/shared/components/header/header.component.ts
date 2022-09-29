@@ -25,9 +25,9 @@ export class HeaderComponent implements OnInit {
 
   langCookie!: string;
 
-  currentUserRole: string = this.authService.getRoles()[0].name;
-
   currentUser!: User;
+
+  currentUserRole!: string;
 
   public logOut(): void {
     this.authService.clear();
@@ -67,6 +67,9 @@ export class HeaderComponent implements OnInit {
         this.translate.setDefaultLang(data['lang']);
       } else {
         this.translate.setDefaultLang(this.defaultLang);
+      }
+      if (this.isAuthenticated()) {
+        this.currentUserRole = this.authService.getRoles()[0].name;
       }
     });
 
