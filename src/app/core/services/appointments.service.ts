@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import Appointment from 'src/app/shared/interfaces/Appointment.interface';
 
 @Injectable({
@@ -17,5 +17,13 @@ export class AppointmentsService {
 
   public getAllAppointments(): Observable<any> {
     return this.http.get(this.API_PATH);
+  }
+  public deleteAppointment(id: string | undefined): Subscription {
+    return this.http.delete(this.API_PATH + `${id}/delete`).subscribe();
+  }
+  public updateAppointment(id: number, appointment: Appointment) {
+    return this.http
+      .put(this.API_PATH + `${id}/update`, { id, ...appointment })
+      .subscribe();
   }
 }

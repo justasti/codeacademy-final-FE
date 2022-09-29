@@ -17,6 +17,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: SignupComponent },
   { path: 'appointments/new', component: NewAppointmentComponent },
+  { path: 'appointments/:id/edit', component: NewAppointmentComponent },
 ];
 
 @NgModule({

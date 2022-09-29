@@ -36,17 +36,22 @@
   },
   "tables": {
     "id": "ID",
-    "name": "Name",
+    "patient_name": "Patient name",
+    "doctor_name": "Doctor name",
     "date": "Date",
-    "description": "Description"
+    "description": "Description",
+    "actions": "Actions"
   },
   "appointments": {
+    "expired": "Expired appointments",
+    "active": "Active appointments",
     "new": {
       "doctor": "Choose a doctor",
       "date": "Choose date",
       "hour": "Hour",
       "minute": "Minute",
-      "complaint": "Complaint"
+      "complaint": "Complaint",
+      "submit": "Submit"
     }
   }
 }

@@ -15,9 +15,12 @@
           }}</a>
         </li>
         <li>
-          <a [routerLink]="['/admin']" routerLinkActive="active">{{
-            "header.admin_panel" | translate
-          }}</a>
+          <a
+            [routerLink]="['/admin']"
+            routerLinkActive="active"
+            *ngIf="currentUserRole === 'admin'"
+            >{{ "header.admin_panel" | translate }}</a
+          >
         </li>
       </div>
       <div *ngIf="!isAuthenticated()">

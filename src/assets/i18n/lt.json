@@ -38,15 +38,21 @@
     "id": "Nr.",
     "name": "Vardas",
     "date": "Data",
-    "description": "Aprašymas"
+    "patient_name": "Paciento vardas",
+    "doctor_name": "Daktaro vardas",
+    "description": "Aprašymas",
+    "actions": "Veiksmai"
   },
   "appointments": {
+    "expired": "Praėję apsilankymai",
+    "active": "Aktyvūs apsilankymai",
     "new": {
       "doctor": "Pasirinkite daktarą",
       "date": "Pasirinkite dieną",
       "hour": "Valanda",
       "minute": "Minutė",
-      "complaint": "Nusiskundimas"
+      "complaint": "Nusiskundimas",
+      "submit": "Išsaugoti"
     }
   }
 }

@@ -3,6 +3,9 @@ import { MatSelectChange } from '@angular/material/select';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { AuthService } from 'src/app/auth/services/auth.service';
+import { UserService } from 'src/app/core/services/user.service';
+import Role from '../../interfaces/Role.interface';
+import User from '../../interfaces/User.interface';
 
 @Component({
   selector: 'app-header',
@@ -14,14 +17,19 @@ export class HeaderComponent implements OnInit {
     private translate: TranslateService,
     private route: ActivatedRoute,
     private router: Router,
-    private authService: AuthService
+    private authService: AuthService,
+    private userService: UserService
   ) {}
 
   defaultLang: string = this.getLangCookie() || 'en';
 
   langCookie!: string;
 
-  logOut() {
+  currentUserRole: string = this.authService.getRoles()[0].name;
+
+  currentUser!: User;
+
+  public logOut(): void {
     this.authService.clear();
     this.router.navigate(['/login']);
   }
@@ -30,11 +38,11 @@ export class HeaderComponent implements OnInit {
     return this.authService.isLoggedIn();
   }
 
-  redirect(redirectRoute: string) {
+  public redirect(redirectRoute: string) {
     this.router.navigate([redirectRoute]);
   }
 
-  onLangChange(e: MatSelectChange): void {
+  public onLangChange(e: MatSelectChange): void {
     this.translate.use(e.value);
     document.cookie = `lang=${e.value}`;
     this.router.navigate([], {
@@ -43,11 +51,11 @@ export class HeaderComponent implements OnInit {
     });
   }
 
-  getLangCookie(): string {
+  private getLangCookie(): string {
     const cookies = document.cookie.split(';');
     for (let cookie of cookies) {
       if (cookie.includes('lang')) {
-        this.langCookie = cookie.substring(6);
+        this.langCookie = cookie.split('=')[1];
       }
     }
     return this.langCookie;
@@ -61,5 +69,9 @@ export class HeaderComponent implements OnInit {
         this.translate.setDefaultLang(this.defaultLang);
       }
     });
+
+    this.userService
+      .getCurrentUser()
+      .subscribe((res) => (this.currentUser = res));
   }
 }

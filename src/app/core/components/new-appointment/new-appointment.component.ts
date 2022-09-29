@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatSelectChange } from '@angular/material/select';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import Appointment from 'src/app/shared/interfaces/Appointment.interface';
 import CurrentUser from 'src/app/shared/interfaces/CurrentUser.interface';
 import UserWithRole from 'src/app/shared/interfaces/UserWithRole.interface';
 import { AppointmentsService } from '../../services/appointments.service';
@@ -16,18 +17,46 @@ export class NewAppointmentComponent implements OnInit {
   constructor(
     public userService: UserService,
     private appointmentService: AppointmentsService,
-    private router: Router
+    private router: Router,
+    private route: ActivatedRoute
   ) {}
 
-  appointmentHours: number[] = [8, 9, 10, 11, 12, 13, 14, 15, 16];
-  appointmentMinutes: number[] = [
-    0o0, 0o5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55,
+  appointmentHours: string[] = [
+    '08',
+    '09',
+    '10',
+    '11',
+    '12',
+    '13',
+    '14',
+    '15',
+    '16',
+  ];
+  appointmentMinutes: string[] = [
+    '00',
+    '05',
+    '10',
+    '15',
+    '20',
+    '25',
+    '30',
+    '35',
+    '40',
+    '45',
+    '50',
+    '55',
   ];
   doctors: UserWithRole[] = [];
 
   loggedInUserPersonalCode: string = '1';
 
   newAppointmentForm: FormGroup = new FormGroup({});
+
+  editMode: boolean = false;
+
+  editedAppId!: number;
+
+  editedApp!: Appointment;
 
   ngOnInit(): void {
     this.newAppointmentForm = new FormGroup({
@@ -41,54 +70,74 @@ export class NewAppointmentComponent implements OnInit {
       complaint: new FormControl(null, [Validators.required]),
     });
 
-    this.userService
-      .getCurrentUser()
-      .subscribe((res) =>
-        this.newAppointmentForm
-          .get('patientPersonalCode')
-          ?.setValue(res.personalCode)
-      );
-
     this.userService.getAllDoctors().subscribe((res) => (this.doctors = res));
+    this.fillFormIfEditing();
+
+    if (!this.editMode) {
+      this.userService
+        .getCurrentUser()
+        .subscribe((res) =>
+          this.newAppointmentForm
+            .get('patientPersonalCode')
+            ?.setValue(res.personalCode)
+        );
+    }
   }
 
-  setSelectedDoctor(event: MatSelectChange) {
+  private fillFormIfEditing() {
+    if (this.route.snapshot.params['id']) {
+      this.editMode = true;
+      this.editedAppId = this.route.snapshot.params['id'];
+      this.appointmentService.getAllAppointments().subscribe((res) => {
+        this.editedApp = res.filter(
+          (app: Appointment) =>
+            app.id?.toString() === this.editedAppId?.toString()
+        )[0];
+        this.newAppointmentForm
+          .get('patientPersonalCode')
+          ?.setValue(this.editedApp.patientPersonalCode);
+        this.newAppointmentForm
+          .get('complaint')
+          ?.setValue(this.editedApp.description);
+      });
+    }
+  }
+
+  public setSelectedDoctor(event: MatSelectChange) {
     this.newAppointmentForm.get('doctorPersonalCode')?.setValue(event.value);
   }
 
-  setSelectedHour(event: MatSelectChange) {
+  public setSelectedHour(event: MatSelectChange) {
     this.newAppointmentForm.get('appointmentHour')?.setValue(event.value);
   }
 
-  setSelectedMinute(event: MatSelectChange) {
+  public setSelectedMinute(event: MatSelectChange) {
     this.newAppointmentForm.get('appointmentMinute')?.setValue(event.value);
   }
 
-  onSubmit() {
+  public onSubmit() {
     const enteredDate = new Date(
       this.newAppointmentForm.get('appointmentDay')?.value
-    );
-    let [year, month, day] = [
-      enteredDate.getFullYear().toString(),
-      enteredDate.getMonth().toString(),
-      enteredDate.getDay().toString(),
-    ];
-
+    )
+      .toLocaleString('lt-LT')
+      .slice(0, 10);
     const formToPost = {
       doctorPersonalCode:
         this.newAppointmentForm.get('doctorPersonalCode')?.value,
       patientPersonalCode: this.newAppointmentForm.get('patientPersonalCode')
         ?.value,
-      appointmentDate: `${year}-${month.length === 1 ? `0${month}` : month}-${
-        day.length === 1 ? `0${day}` : day
-      } ${this.newAppointmentForm.get('appointmentHour')?.value}:${
-        this.newAppointmentForm.get('appointmentMinute')?.value
-      }`,
+      appointmentDate: `${enteredDate} ${
+        this.newAppointmentForm.get('appointmentHour')?.value
+      }:${this.newAppointmentForm.get('appointmentMinute')?.value}`,
       description: this.newAppointmentForm.get('complaint')?.value,
       status: 'active',
     };
     if (this.newAppointmentForm.valid) {
-      this.appointmentService.createNewAppointment(formToPost).subscribe();
+      if (!this.editMode) {
+        this.appointmentService.createNewAppointment(formToPost).subscribe();
+      } else {
+        this.appointmentService.updateAppointment(this.editedAppId, formToPost);
+      }
       this.router.navigate(['/appointments']);
     }
   }

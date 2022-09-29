@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, pipe, Subscription } from 'rxjs';
 import { AuthService } from 'src/app/auth/services/auth.service';
 import CurrentUser from 'src/app/shared/interfaces/CurrentUser.interface';
 import Role from 'src/app/shared/interfaces/Role.interface';
@@ -34,6 +34,14 @@ export class UserService {
 
   public getAllDoctors(): Observable<any> {
     return this.http.get(this.API_PATH + 'api/users/doctors');
+  }
+
+  public getAllUsers(): Observable<any> {
+    return this.http.get(this.API_PATH + 'api/users/');
+  }
+
+  public getUser(personalCode: string): Observable<User> {
+    return this.http.get<User>(this.API_PATH + 'users/get/' + personalCode);
   }
 
   public isAuthorized(allowedRoles: string[]): boolean {

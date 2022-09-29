@@ -1,42 +1,74 @@
-<table mat-table [dataSource]="appointments" class="mat-elevation-z8">
-  <ng-container matColumnDef="id">
-    <th mat-header-cell *matHeaderCellDef>{{ "tables.id" | translate }}</th>
-    <td mat-cell *matCellDef="let appointment">{{ appointment.id }}</td>
-  </ng-container>
-  <ng-container matColumnDef="name">
-    <th mat-header-cell *matHeaderCellDef>
-      {{ "tables.name" | translate }}
-    </th>
-    <td mat-cell *matCellDef="let appointment">
-      {{ appointment.patientPersonalCode }}
-    </td>
-  </ng-container>
-  <ng-container matColumnDef="date">
-    <th mat-header-cell *matHeaderCellDef>
-      {{ "tables.date" | translate }}
-    </th>
-    <td mat-cell *matCellDef="let appointment">
-      {{ appointment.appointmentDate }}
-    </td>
-  </ng-container>
-  <ng-container matColumnDef="problem">
-    <th mat-header-cell *matHeaderCellDef>
-      {{ "tables.description" | translate }}
-    </th>
-    <td mat-cell *matCellDef="let appointment">
-      {{ appointment.description }}
-    </td>
-  </ng-container>
-
-  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-  <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
-</table>
-<button
-  routerLink="/appointments/new"
-  mat-fab
-  color="accent"
-  aria-label="Example icon button with a menu icon"
->
-  <mat-icon>plus_one</mat-icon>
-  <mat-icon>person</mat-icon>
-</button>
+<mat-card>
+  <h3>{{ "appointments.active" | translate }}</h3>
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">{{ "tables.id" | translate }}</th>
+        <th scope="col">{{ "tables.patient_name" | translate }}</th>
+        <th scope="col">{{ "tables.date" | translate }}</th>
+        <th scope="col">{{ "tables.doctor_name" | translate }}</th>
+        <th scope="col">{{ "tables.description" | translate }}</th>
+        <th scope="col">{{ "tables.actions" | translate }}</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let appointment of activeAppointments">
+        <ng-container *ngIf="showAppointment(appointment)">
+          <th scope="row">{{ appointment.id }}</th>
+          <td>{{ getUserName(appointment.patientPersonalCode) }}</td>
+          <td>{{ appointment.appointmentDate }}</td>
+          <td>{{ getUserName(appointment.doctorPersonalCode) }}</td>
+          <td>{{ appointment.description }}</td>
+          <td>
+            <button
+              mat-icon-button
+              color="warn"
+              (click)="deleteAppointment(appointment.id)"
+            >
+              <mat-icon>delete</mat-icon>
+            </button>
+            <button
+              mat-icon-button
+              color="primary"
+              (click)="editApppointment(appointment.id)"
+            >
+              <mat-icon>edit</mat-icon>
+            </button>
+          </td>
+        </ng-container>
+      </tr>
+    </tbody>
+  </table>
+  <button
+    routerLink="/appointments/new"
+    mat-fab
+    color="accent"
+    aria-label="Example icon button with a menu icon"
+  >
+    <mat-icon>plus_one</mat-icon>
+    <mat-icon>person</mat-icon>
+  </button>
+  <h3>{{ "appointments.expired" | translate }}</h3>
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">{{ "tables.id" | translate }}</th>
+        <th scope="col">{{ "tables.patient_name" | translate }}</th>
+        <th scope="col">{{ "tables.date" | translate }}</th>
+        <th scope="col">{{ "tables.doctor_name" | translate }}</th>
+        <th scope="col">{{ "tables.description" | translate }}</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let appointment of expiredAppointments">
+        <ng-container *ngIf="showAppointment(appointment)">
+          <th scope="row">{{ appointment.id }}</th>
+          <td>{{ getUserName(appointment.patientPersonalCode) }}</td>
+          <td>{{ appointment.appointmentDate }}</td>
+          <td>{{ getUserName(appointment.doctorPersonalCode) }}</td>
+          <td>{{ appointment.description }}</td>
+        </ng-container>
+      </tr>
+    </tbody>
+  </table>
+</mat-card>
