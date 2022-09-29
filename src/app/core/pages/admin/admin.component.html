@@ -1,1 +1,25 @@
-<p>admin works!</p>
+<mat-accordion>
+  <mat-expansion-panel hideToggle>
+    <mat-expansion-panel-header>
+      <mat-panel-title
+        ><strong>{{ "admin.users" | translate }}</strong></mat-panel-title
+      >
+    </mat-expansion-panel-header>
+    <p *ngFor="let user of allUsers">
+      {{ user.firstName }} {{ user.lastName }} ({{ user.personalCode }}) -
+      {{ user.roles[0].name }}
+      <span>
+        <button
+          color="warn"
+          mat-icon-button
+          (click)="editUser(user.personalCode)"
+        >
+          <mat-icon>edit</mat-icon>
+        </button></span
+      >
+    </p>
+  </mat-expansion-panel>
+</mat-accordion>
+<mat-card *ngIf="showCard">
+  <router-outlet></router-outlet>
+</mat-card>

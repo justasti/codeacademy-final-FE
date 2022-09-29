@@ -1,0 +1,20 @@
+<h3>
+  <strong>{{ userName }}</strong>
+</h3>
+<p>{{ "admin.edit.set_role" | translate }}</p>
+<form (submit)="changeUserRole()">
+  <mat-radio-group aria-label="Select an option">
+    <mat-radio-button (change)="onRadioChange($event)" value="admin"
+      >admin</mat-radio-button
+    >
+    <mat-radio-button (change)="onRadioChange($event)" value="doctor"
+      >doctor</mat-radio-button
+    >
+    <mat-radio-button (change)="onRadioChange($event)" value="user"
+      >user</mat-radio-button
+    >
+  </mat-radio-group>
+  <button mat-stroked-button color="primary">
+    {{ "admin.edit.save" | translate }}
+  </button>
+</form>

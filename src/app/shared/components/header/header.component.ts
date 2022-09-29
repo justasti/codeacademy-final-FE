@@ -18,7 +18,7 @@ export class HeaderComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private authService: AuthService,
-    private userService: UserService
+    public userService: UserService
   ) {}
 
   defaultLang: string = this.getLangCookie() || 'en';

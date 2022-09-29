@@ -3,6 +3,13 @@
     "open": "Atidaryti",
     "close": "Uždaryti"
   },
+  "admin": {
+    "users": "Vartotojai",
+    "edit": {
+      "set_role": "Keisti rolę:",
+      "save": "Išsaugoti"
+    }
+  },
   "header": {
     "login": "Prisijungti",
     "signup": "Registracija",
@@ -16,7 +23,8 @@
     "required": "Lauko reikšmė privaloma",
     "personal_code_length": "Asmens kodą turi sudaryti 11 skaičių",
     "personal_code_pattern": "Asmens kodą turi tik skaičiai",
-    "password_match": "Įvesti slaptažodžiai nesutampa"
+    "password_match": "Įvesti slaptažodžiai nesutampa",
+    "404": "Puslapis nerastas. Patikrinkite nuorodą ir bandykite dar kartą"
   },
   "login": {
     "email": "El. pašto adresas",

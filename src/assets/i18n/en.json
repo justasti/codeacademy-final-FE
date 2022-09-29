@@ -3,6 +3,13 @@
     "open": "Open",
     "close": "Close"
   },
+  "admin": {
+    "users": "Users",
+    "edit": {
+      "set_role": "Set new role:",
+      "save": "Save"
+    }
+  },
   "header": {
     "login": "Log in",
     "signup": "Sign up",
@@ -16,7 +23,8 @@
     "required": "Field is required",
     "personal_code_length": "Personal code must consist of 11 digits",
     "personal_code_pattern": "Personal code must only consist of digits",
-    "password_match": "Entered passwords does not match"
+    "password_match": "Entered passwords does not match",
+    "404": "Page not found. Please check URL and try again"
   },
   "login": {
     "email": "Email address",

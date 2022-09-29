@@ -59,4 +59,13 @@ export class UserService {
     }
     return authorized;
   }
+
+  public changeRole(personalCode: string, roleName: string): void {
+    this.http
+      .put('http://localhost:8080/api/users/updateRole', {
+        personalCode,
+        roleName,
+      })
+      .subscribe();
+  }
 }

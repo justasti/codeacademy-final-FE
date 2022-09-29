@@ -33,6 +33,10 @@ import { UserService } from './core/services/user.service';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { AdminComponent } from './core/pages/admin/admin.component';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { PageNotFoundComponent } from './core/pages/page-not-found/page-not-found.component';
+import { EditUserComponent } from './core/pages/admin/edit-user/edit-user.component';
+import { MatRadioModule } from '@angular/material/radio';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -47,6 +51,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     MainContentComponent,
     NewAppointmentComponent,
     AdminComponent,
+    PageNotFoundComponent,
+    EditUserComponent,
   ],
   imports: [
     BrowserModule,
@@ -75,6 +81,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     MatSnackBarModule,
     MatDatepickerModule,
     MatNativeDateModule,
+    MatExpansionModule,
+    MatRadioModule,
   ],
   providers: [
     AuthGuard,
